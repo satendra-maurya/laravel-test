@@ -28,6 +28,7 @@ class BlogController extends Controller
        
        if(isset($formData['id'])) {
             $blog = Blog::find($formData['id']);
+            
             $blog->update($formData);
             return redirect()->route('admin.blog')->with('success','Blog has been updated successfully');
        }

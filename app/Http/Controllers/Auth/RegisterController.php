@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/home';
 
     /**
      * Create a new controller instance.
@@ -62,7 +64,13 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {   
+        $log = ['name' => $data['name'],
+                'email' => $data['email']];
+        
+        $orderLog = new Logger('user');
+        $orderLog->pushHandler(new StreamHandler(storage_path('logs/register.log')), Logger::INFO);
+        $orderLog->info('UserLog', $log);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

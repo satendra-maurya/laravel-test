@@ -15,13 +15,13 @@
       <a class="navbar-brand" href="{{ route('home') }}">{{ trans('site.app_name') }}</a>
     </div>
     <ul class="nav navbar-nav navbar-center">
-      <li class="active"><a href="{{ route('home') }}">Home</a></li>
-      <li><a href="{{ route('about') }}">About Us</a></li>
-      <li><a href="{{ route('blogLists') }}">Blog</a></li>
-      <li><a href="{{ route('contact') }}">Contact Us</a></li>
+      <li class="{{ Request::path() == '/' ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
+      <li class="{{ Request::path() == 'about' ? 'active' : '' }}"><a href="{{ route('about') }}">About Us</a></li>
+      <li class="{{ Request::path() == 'blog' ? 'active' : '' }}"><a href="{{ route('blogLists') }}">Blog</a></li>
+      <li class="{{ Request::path() == 'contact' ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact Us</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <!-- <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
       <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
   </div>

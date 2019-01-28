@@ -16,15 +16,17 @@
 // });
 Route::get('/', 'Fontend\HomeController@index')->name('home');
 Route::get('/blog', 'Fontend\BlogController@index')->name('blogLists');
-Route::get('/blog-detail', 'Fontend\BlogController@show')->name('BlogDetail');
+Route::get('/blog-detail/{url}', 'Fontend\BlogController@show')->name('blogDetail');
 Route::get('/about', 'Fontend\HomeController@about')->name('about');
 Route::get('/contact', 'Fontend\HomeController@contact')->name('contact');
+Route::post('/contact', 'Fontend\HomeController@sendMail')->name('sendMail');
 
 Auth::routes();
 
 Route::middleware(['auth'])->prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/home', 'HomeController@index')->name('dashboard');
     Route::get('/setting', 'SettingController@index')->name('admin.setting');
+    Route::post('/setting/store', 'SettingController@store')->name('admin.setting.store');
     Route::get('/blog', 'BlogController@index')->name('admin.blog');
     Route::get('/blog/create', 'BlogController@create')->name('admin.blog.create');
     Route::post('/blog/store', 'BlogController@store')->name('admin.blog.store');

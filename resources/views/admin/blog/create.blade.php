@@ -55,6 +55,7 @@
                   <input type="text" name="author" value="{{ $blog->author }}" class="form-control" id="author" placeholder="Enter title">
                   <p style="color:red"> {{ $errors->first('author') }} </p>
                 </div>
+              
                 <div class="form-group">
                   <label for="status">Status</label>
                   <select name="status" class="form-control" id="status">

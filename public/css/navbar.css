@@ -151,3 +151,7 @@ body {
   .navbar-center {
     margin-left: 265px;
   }
+
+  .error {
+    color: red;
+  }
